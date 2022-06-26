@@ -47,6 +47,12 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         cell.textLabel?.text = users[indexPath.row].name
         return cell
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        presenter.presentAlert(indexItem: indexPath.row, userArray: users)
+//        let alert = UIAlertController(title: , message: <#T##String?#>, preferredStyle: <#T##UIAlertController.Style#>)
+
+    }
 }
 
 
@@ -59,5 +65,8 @@ extension ViewController: MainPresentDelegate {
     }
 
     func presentetAlert(titile: String, message: String) {
+        print(titile)
+        let alert = UIAlertController(title: titile, message: message, preferredStyle: .actionSheet)
+        present(alert, animated: true)
     }
 }

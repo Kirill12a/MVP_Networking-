@@ -34,4 +34,8 @@ class UserPresenter {
         }.resume()
     }
 
+    func presentAlert(indexItem: Int, userArray: [UserModel]) {
+        delegate?.presentetAlert(titile: userArray[indexItem].name, message: "Вы выбрали")
+    }
+
 }
