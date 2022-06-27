@@ -16,8 +16,8 @@ class ViewController: UIViewController {
     }()
 
     //
-fileprivate var users = [UserModel]()
-var presenter = UserPresenter()
+    fileprivate var users       =   [UserModel]()
+    fileprivate var presenter   =   UserPresenter()
     //
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,20 +38,24 @@ var presenter = UserPresenter()
 }
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
+
+    private func sendUserData(index: Int)->String {
+        let users = users[index]
+        return users.name
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return users.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = users[indexPath.row].name
+        cell.textLabel?.text = sendUserData(index: indexPath.row)
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter.presentAlert(indexItem: indexPath.row, userArray: users)
-//        let alert = UIAlertController(title: , message: <#T##String?#>, preferredStyle: <#T##UIAlertController.Style#>)
-
     }
 }
 
